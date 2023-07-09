@@ -35,6 +35,3 @@ Each csv file should have the following columns:
 - `pred_wo_abstention` - predictions of `-1`, `1` 
 
 
-## Number of Submissions Per Day
-Each group can make at most one submission per group member per 24 hour period.
-
