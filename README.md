@@ -1,37 +1,39 @@
-# Final Project - Poverty Analysis
-In this final project, we study classification in the context of the [Poverty dataset](https://wilds.stanford.edu/datasets/#povertymap), which is part of the [Wilds Project](https://wilds.stanford.edu/).
+# Poverty Analysis - Final Project
 
-The goal of this project is to classify poor vs. wealthy regions in Africa based on satellite imagery. There are `~20,000` images covering `23` countries in Africa.
+**Note: This project is based on a variant of the poverty mapping dataset collected by Yeh et al. (2020). Due to copyright and licensing restrictions, I cannot upload the associated dataset of images. Therefore, the image files required for this project are not included in the repository.**
 
-The satellite images are of the shape `224 X 224 X 8`. Each pixel corresponds to a `30m X 30m` area and each image corresponds to a `6.7km X 6.7km` square. To see some sample images, see [this notebook](<https://github.com/SateeshKumar21/PovertyAnalysis/tree/main/HW5/Pre-processing/2.browse images.ipynb>). 
+In this final project, we aim to perform classification on the Poverty dataset, which is part of the Wilds Project. The objective is to classify regions in Africa as either poor or wealthy based on satellite imagery. The dataset consists of approximately 20,000 images covering 23 countries in Africa.
 
-This dataset comprises images from both urban and rural areas. In general, urban areas are significantly more wealthy than rural areas. See [this notebook](<https://github.com/SateeshKumar21/PovertyAnalysis/tree/main/HW5/Pre-processing/2.browse images.ipynb>) for details. To make the problem into a classification task, we define a threshold on the wealth that separates the poor from wealthy. As there is a large difference between rural and urban, we use a different threshold for each subset. Rural images with wealth less than -0.5 are labeled as poor and greater than -0.5 as wealthy. Similarly, we pick a threshold of 1.3 for urban images.
+### Project Objectives
 
-## Dataset 
-You can find the image files at the following location:
-- `/home/username/public/cs255-sp22-a00-public/poverty`
+Our project aims to address two main challenges:
 
-All files (train and test) are stored inside this folder in npz format. We divided this dataset into one train and 2 test sets. We separated out ~25% of the data to build a countries test set (`Country_test_reduct.csv`) s.t. the test countries that are not present in the training set. In the random test set, we separated 25% of the instances at random from the remaining 75% of data to generate a random test set (`Random_test_reduct.csv`).
+1. Domain Generalization: We aim to solve a domain generalization problem across country borders. The training and test distributions comprise disjoint sets of domains, and the goal is to generalize to domains unseen during training. For example, we want our models to perform well on countries or regions that were not part of the training data.
 
-So, there are 3 csv files:
-1. `train.csv`: Ground truth for the training dataset. Use the column `label` to train your models.
-2. `Country_test_reduct.csv`: Country test set. You have all the same columns as `train.csv` except for `label` and `wealthpooled`.
-3. `Random_test_reduct.csv`: Random test set. You have all the same columns as `train.csv` except for `label` and `wealthpooled`.
+2. Subpopulation Shift: We also focus on improving subpopulation performance across urban and rural areas. The training and test domains overlap, but their relative proportions differ. Our goal is to develop models that perform well in both urban and rural regions, taking into account the varying distributions in wealth values.
 
-Note, random test set is an easier one and follows the same distribution as the train set. Country test set is harder as it consists of countries that you will not encounter in the train set. 
+### Dataset Information
 
+The satellite images are of the shape 224 X 224 X 8, where each pixel corresponds to a 30m X 30m area, and each image represents a 6.7km X 6.7km square region. The dataset comprises images from both urban and rural areas, where urban regions tend to be wealthier than rural ones.
 
-There are four files to submit:
-1. `results.csv` — your predictions on the random test set 
-2. `results_country.csv` — your predictions on the country test set 
-3. `code.zip` or `code.tgz` — your code in a zip file, max size of zip file is 10MB.
-4. `explanation.md` - your explanation for your implementation
+### Dataset Files
 
-Each csv file should have the following columns:
+As mentioned, the image files required for this project are not provided due to copyright restrictions. However, we have included the following CSV files that contain the necessary ground truth and test sets:
 
-- `filename` — e.g. `image13724.npz`
-- `urban` — `1` when urban, `0` when not urban
-- `pred_with_abstention`  — predictions of `-1`, `1`, and `0` when I don’t know
-- `pred_wo_abstention` - predictions of `-1`, `1` 
+1. `train.csv`: Ground truth for the training dataset. It includes columns such as "label" which you will use to train your models.
 
+2. `Country_test_reduct.csv`: Country test set. This test set contains data from countries that are not present in the training set. The columns are the same as in `train.csv`, except for "label" and "wealthpooled".
 
+3. `Random_test_reduct.csv`: Random test set. This test set is easier and follows the same distribution as the training set. The columns are the same as in `train.csv`, except for "label" and "wealthpooled".
+
+### Files Structure
+
+For the final project submission, you need to provide the following four files:
+
+1. `results.csv`: Your predictions on the random test set. This file should contain the columns "filename," "urban," "pred_with_abstention," and "pred_wo_abstention."
+
+2. `results_country.csv`: Your predictions on the country test set. This file should also contain the columns "filename," "urban," "pred_with_abstention," and "pred_wo_abstention."
+
+3. `code`: A folder containing your code.
+
+4. `explanation.md`: A markdown file containing an explanation of your implementation.
