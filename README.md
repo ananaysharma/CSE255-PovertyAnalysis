@@ -1,6 +1,6 @@
 # Poverty Analysis - Final Project
 
-**Note: This project is based on a variant of the poverty mapping dataset collected by Yeh et al. (2020). Due to copyright and licensing restrictions, I cannot upload the associated dataset of images. Therefore, the image files required for this project are not included in the repository.**
+**Note:  This project is based on a variant of the poverty mapping dataset collected by Yeh et al. (2020). Since this project is part of a course, I cannot share the complete code and data to avoid violating UCSD Academic Integrity policies. Therefore, the image files required for this project and the complete code implementation are not included in the repository.**
 
 In this final project, we aim to perform classification on the Poverty dataset, which is part of the Wilds Project. The objective is to classify regions in Africa as either poor or wealthy based on satellite imagery. The dataset consists of approximately 20,000 images covering 23 countries in Africa.
 
@@ -28,8 +28,6 @@ As mentioned, the image files required for this project are not provided due to 
 
 ### Files Structure
 
-For the final project submission, you need to provide the following four files:
-
 1. `results.csv`: Your predictions on the random test set. This file should contain the columns "filename," "urban," "pred_with_abstention," and "pred_wo_abstention."
 
 2. `results_country.csv`: Your predictions on the country test set. This file should also contain the columns "filename," "urban," "pred_with_abstention," and "pred_wo_abstention."
@@ -37,3 +35,7 @@ For the final project submission, you need to provide the following four files:
 3. `code`: A folder containing your code.
 
 4. `explanation.md`: A markdown file containing an explanation of your implementation.
+
+## Alternative Approach
+
+An alternative approach to classify regions as rich or poor is to predict the wealthpooled values using regression models trained on image index features. Regression models such as linear regression, decision tree regression, random forest regression, gradient boosting regression, or support vector regression can be utilized. These models can predict the wealthpooled values for regions in the testing dataset, which can then be classified as rich or poor based on appropriate thresholds. This alternative approach provides an understanding of socioeconomic disparities by capturing subtle variations in wealth across regions.
